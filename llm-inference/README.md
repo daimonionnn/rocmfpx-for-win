@@ -362,6 +362,11 @@ Results land in `results\`.
   lane that isn't already ruled out by the bandwidth wall.
 - ROCmFPX decode-kernel tuning profiles (`Setup-ROCmFPX.ps1 -Tune rocmfpx-strix-nwarps2` etc.) are
   untested; only `stable` has been built.
+- **Full-native 262K context** (`-Ctx 262144`): starts and reports n_ctx=262144, but at the
+  current BIOS memory split (~32 GB host RAM, rest GPU carve-out) the host side pages to disk and
+  decode collapses to 2–13 t/s. To unlock it, rebalance the BIOS UMA/dedicated-VRAM split (this
+  is where the earlier "does the 64/96 GB split matter" question returns — it matters exactly
+  when KV + host buffers outgrow what's left to Windows) and re-measure. Default stays 128K.
 
 
 

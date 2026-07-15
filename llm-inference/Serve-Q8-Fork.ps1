@@ -30,7 +30,7 @@
 param(
     [int]$Port = 8081,
     [string]$ApiKey = '',
-    [int]$Ctx = 262144   # full native n_ctx_train of Qwen3.6-27B (~70 GB f16 KV at this size)
+    [int]$Ctx = 131072   # 262144 (native max) thrashes at the current BIOS RAM split - see Serve-Qwen.ps1
 )
 
 $ErrorActionPreference = 'Stop'

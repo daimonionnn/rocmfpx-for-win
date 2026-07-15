@@ -26,10 +26,13 @@
   Use 127.0.0.1 to restrict to this machine only.
 
 .PARAMETER Ctx
-  Context window (prompt + generation). Default 262144 = Qwen3.6-27B's full native
-  training length (n_ctx_train; no rope scaling needed). Costs ~70 GB of f16 KV cache
-  pre-allocation at this size — fine on this 128 GB box (~97 GB total with the Q8 model),
-  lower it on smaller machines. Going beyond 262144 would need '--rope-scaling yarn'.
+  Context window (prompt + generation). Default 131072 (128K).
+  MEASURED WARNING (2026-07-15): -Ctx 262144 (the model's full native n_ctx_train) DOES start
+  and reports n_ctx=262144, but on this box's current BIOS memory split (~32 GB left to
+  Windows, rest carved out as GPU VRAM) the server's host-side allocations exceed physical
+  RAM and page to disk — decode collapses from ~20 t/s to 2-13 t/s. Use 262144 only after
+  rebalancing the BIOS UMA/VRAM split to leave enough host RAM. Beyond 262144 would
+  additionally need '--rope-scaling yarn'.
 
 .PARAMETER DraftNMax
   MTP max draft tokens. Default 4 (measured best/LM-Studio default).
@@ -55,7 +58,7 @@ param(
     [string]$Runtime = 'rocm7',
     [int]$Port = 8081,
     [string]$ListenAddress = '0.0.0.0',
-    [int]$Ctx = 262144,
+    [int]$Ctx = 131072,
     [int]$DraftNMax = 4,
     [string]$ApiKey = '',
     [string]$Model = '',
