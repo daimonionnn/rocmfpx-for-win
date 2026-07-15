@@ -4,7 +4,7 @@
 $ErrorActionPreference = 'Continue'
 
 $repoRoot = Split-Path $PSScriptRoot -Parent   # ...\llm-inference
-$devRoot  = Split-Path $repoRoot -Parent       # ...\ai-tools-for-win
+$devRoot  = Split-Path $repoRoot -Parent       # ...\amd-rocmfpx-for-win
 $bin = Join-Path $devRoot 'llm-bench\bin\llama-bench.exe'
 if (-not (Test-Path $bin)) { throw "llama-bench.exe not found at $bin (run ..\llm-bench\Setup.ps1)." }
 
