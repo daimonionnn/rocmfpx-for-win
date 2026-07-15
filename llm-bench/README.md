@@ -52,7 +52,7 @@ Runs three tests in sequence:
 **Max Draft Tokens = 4** (`--spec-draft-n-max 4`).
 
 Default MTP model path is the LM Studio location:
-`C:\Users\matt\.lmstudio\models\unsloth\Qwen3.6-27B-MTP-GGUF`
+`%USERPROFILE%\.lmstudio\models\unsloth\Qwen3.6-27B-MTP-GGUF`
 
 ```powershell
 .\Run-RocmTest.ps1

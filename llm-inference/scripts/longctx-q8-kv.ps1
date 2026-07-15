@@ -2,7 +2,8 @@
 # comparing f16 KV cache vs Q8 KV cache across the long-context curve.
 # Deliverables: (a) real Q8-model TTFT, (b) the Q8-KV-cache effect on prefill + memory.
 $ErrorActionPreference = 'Continue'
-$bin   = 'c:\development\ai-tools-for-win\llm-bench\bin\llama-bench.exe'   # bin\ is now ROCm 7
+$devRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+$bin   = "$devRoot\llm-bench\bin\llama-bench.exe"   # bin\ is now ROCm 7
 $model = "$env:USERPROFILE\.lmstudio\models\lmstudio-community\Qwen3.6-27B-GGUF\Qwen3.6-27B-Q8_0.gguf"
 $out   = "$PSScriptRoot\..\results\longctx-q8-kv.csv"
 if (Test-Path $out) { Remove-Item $out }

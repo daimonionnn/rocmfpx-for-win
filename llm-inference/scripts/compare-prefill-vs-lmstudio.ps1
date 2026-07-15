@@ -2,8 +2,9 @@
 # Same long prompt to both, max_tokens=1 so wall time ~= prefill time. Apples-to-apples,
 # both measured client-side (prompt_tokens / wall_seconds).
 $ErrorActionPreference = 'Continue'
-$sp = 'C:\Users\matt\AppData\Local\Temp\claude\c--development-ai-tools-for-win\4d6c6f75-de03-4360-b40b-5d2c76574ddc\scratchpad'
-$prompt = Get-Content -Raw "$sp\prompt-32k.txt"
+# Prompt file (natural prose, ~32K tokens) must exist in data\ - see rocmfpx-fp4-mtp-128k.ps1
+# for how data\prompt-128k.txt is built from the wikitext corpus (same recipe, smaller slice).
+$prompt = Get-Content -Raw "$PSScriptRoot\..\data\prompt-32k.txt"
 
 $servers = @(
     @{ name='NAS (ROCm7)  :8080'; url='http://localhost:8080' },

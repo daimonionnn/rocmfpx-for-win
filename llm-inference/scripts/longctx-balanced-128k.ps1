@@ -22,7 +22,8 @@ param(
 
 $ErrorActionPreference = 'Continue'
 
-$bench = 'C:\development\ai-tools-for-win\llm-bench\bin\llama-bench.exe'
+$devRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+$bench = "$devRoot\llm-bench\bin\llama-bench.exe"
 $out   = "$PSScriptRoot\..\results\longctx-balanced-128k.csv"
 
 $models = [ordered]@{

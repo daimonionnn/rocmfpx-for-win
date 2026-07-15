@@ -2,7 +2,10 @@
 # official multi-arch b9910 HIP build, on the long-context prefill curve.
 # Control numbers (b9910) already in results\longctx-prefill.csv.
 $ErrorActionPreference = 'Continue'
-$bin  = 'c:\development\ai-tools-for-win\llm-bench\bin-rocm7-gfx1151\llama-bench.exe'
+# Historical: the ROCm 7 build originally lived side-by-side in bin-rocm7-gfx1151\ during the
+# A/B; it has since become the default bin\ (Setup.ps1). Kept relative for reproducibility.
+$devRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+$bin  = "$devRoot\llm-bench\bin\llama-bench.exe"
 $qwen = "$env:USERPROFILE\.lmstudio\models\unsloth\Qwen3.6-27B-MTP-GGUF\Qwen3.6-27B-UD-Q4_K_XL.gguf"
 $out  = "$PSScriptRoot\..\results\longctx-prefill-rocm7.csv"
 if (Test-Path $out) { Remove-Item $out }

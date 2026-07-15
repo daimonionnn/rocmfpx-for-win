@@ -22,10 +22,12 @@
 param([switch]$Full, [string]$Tag = '')
 
 $ErrorActionPreference = 'Continue'
-$benchRocm7 = 'c:\development\ai-tools-for-win\llm-bench\bin\llama-bench.exe'
-$benchFpx   = 'c:\development\ai-tools-for-win\llm-inference\bin-rocmfpx\llama-bench.exe'
+$repoRoot   = Split-Path $PSScriptRoot -Parent
+$devRoot    = Split-Path $repoRoot -Parent
+$benchRocm7 = "$devRoot\llm-bench\bin\llama-bench.exe"
+$benchFpx   = "$repoRoot\bin-rocmfpx\llama-bench.exe"
 $q8         = "$env:USERPROFILE\.lmstudio\models\unsloth\Qwen3.6-27B-MTP-GGUF\Qwen3.6-27B-Q8_0.gguf"
-$fp4        = 'c:\development\ai-tools-for-win\llm-inference\models\Qwen3.6-27B-MTP-ROCmFP4-STRIX-imatrix-embF16-headQ6.gguf'
+$fp4        = "$repoRoot\models\Qwen3.6-27B-MTP-ROCmFP4-STRIX-imatrix-embF16-headQ6.gguf"
 $suffix     = if ($Tag) { "-$Tag" } else { '' }
 $out        = "$PSScriptRoot\..\results\rocmfpx-ab$suffix.csv"
 

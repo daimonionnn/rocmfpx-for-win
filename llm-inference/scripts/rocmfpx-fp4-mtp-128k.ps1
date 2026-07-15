@@ -30,7 +30,7 @@ $configs = [ordered]@{
         Model = Join-Path $root 'models\Qwen3.6-27B-MTP-ROCmFP4-STRIX-imatrix-embF16-headQ6.gguf'
     }
     'q8-lemonade-mtp' = @{
-        Cli   = 'c:\development\ai-tools-for-win\llm-bench\bin\llama-cli.exe'
+        Cli   = Join-Path (Split-Path $root -Parent) 'llm-bench\bin\llama-cli.exe'
         Model = "$env:USERPROFILE\.lmstudio\models\unsloth\Qwen3.6-27B-MTP-GGUF\Qwen3.6-27B-Q8_0.gguf"
     }
 }

@@ -2,9 +2,12 @@
 # Same method as longctx-q8-mtp.ps1 so numbers compare directly. Reads t/s from
 # llama.cpp's own "[ Prompt: X t/s | Generation: Y t/s ]" summary line.
 $ErrorActionPreference = 'Continue'
-$bin  = 'c:\development\ai-tools-for-win\llm-bench\bin\llama-cli.exe'
+$devRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+$bin  = "$devRoot\llm-bench\bin\llama-cli.exe"
 $model= "$env:USERPROFILE\.lmstudio\models\unsloth\Qwen3.6-27B-MTP-GGUF\Qwen3.6-27B-UD-Q4_K_XL.gguf"
-$sp   = 'C:\Users\matt\AppData\Local\Temp\claude\c--development-ai-tools-for-win\4d6c6f75-de03-4360-b40b-5d2c76574ddc\scratchpad'
+# Prompt files (natural prose, ~32K and ~128K tokens) must exist in data\ - see
+# rocmfpx-fp4-mtp-128k.ps1, which builds data\prompt-128k.txt from the wikitext corpus.
+$sp   = "$PSScriptRoot\..\data"
 $out  = "$PSScriptRoot\..\results\longctx-q4-mtp.csv"
 if (Test-Path $out) { Remove-Item $out }
 'ctx_label,prefill_tps,decode_tps' | Out-File $out -Encoding utf8

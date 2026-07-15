@@ -2,7 +2,8 @@
 # Decode (tg) is the memory-bandwidth-bound regime, so bigger quant = slower generation.
 # Measured on the ROCm 7 gfx1151 build (bin\). Two depths: fresh (0) and long-ctx (32768).
 $ErrorActionPreference = 'Continue'
-$bin  = 'c:\development\ai-tools-for-win\llm-bench\bin\llama-bench.exe'
+$devRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+$bin  = "$devRoot\llm-bench\bin\llama-bench.exe"
 $dir  = "$env:USERPROFILE\.lmstudio\models\lmstudio-community\Qwen3.6-27B-GGUF"
 $out  = "$PSScriptRoot\..\results\decode-quant-compare.csv"
 if (Test-Path $out) { Remove-Item $out }
