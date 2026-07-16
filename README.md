@@ -1,4 +1,4 @@
-# ROCmFPX for Windows — for the win 🏆
+# ROCmFPX for Windows 🏆
 
 Native **Windows** tooling for fast local LLM inference on **AMD Strix Halo** (Ryzen AI MAX,
 gfx1151) — and the only Windows build of the [ROCmFPX](https://github.com/charlie12345/ROCmFPX)
